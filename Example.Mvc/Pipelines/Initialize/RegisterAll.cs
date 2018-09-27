@@ -5,9 +5,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics.CodeAnalysis;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
-using System.Web.Routing;
 using Sitecore.Pipelines;
 
 namespace Example.Mvc.Pipelines.Initialize
@@ -17,9 +17,9 @@ namespace Example.Mvc.Pipelines.Initialize
   {
     public virtual void Process(PipelineArgs args)
     {
-      AreaRegistration.RegisterAllAreas();
-      FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-      RouteConfig.RegisterRoutes(RouteTable.Routes);
+      //GlobalConfiguration.Configure(config => FilterConfig.RegisterGlobalFilters(config.Filters));
+      //AreaRegistration.RegisterAllAreas();
+      GlobalConfiguration.Configure(config => RouteConfig.RegisterRoutes(config.Routes));
       BundleConfig.RegisterBundles(BundleTable.Bundles);
     }
   }

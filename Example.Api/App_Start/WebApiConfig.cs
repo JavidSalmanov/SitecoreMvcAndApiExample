@@ -1,17 +1,22 @@
 ﻿using System.Web.Http;
-using System.Web.Routing;
 
 namespace Example.Api
 {
   public static class WebApiConfig
   {
-    public static void RegisterRoutes(RouteCollection routes)
-    {
 
+    public static void Register(HttpConfiguration config)
+    {
+      //config.MapHttpAttributeRoutes();
+      RegisterRoutes(config.Routes);
+    }
+
+    private static void RegisterRoutes(HttpRouteCollection routes)
+    {
       routes.MapHttpRoute(
         "DefaultApi",
         "api/{controller}/{id}",
-        new {id = RouteParameter.Optional}
+        new {id = RouteParameter.Optional, action = "Get" }
       );
     }
   }
